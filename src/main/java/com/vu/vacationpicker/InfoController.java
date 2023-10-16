@@ -8,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -29,6 +31,8 @@ public class InfoController implements Initializable {
     private Label transMethLabel;
     @FXML
     private ImageView flagImage;
+    @FXML
+    private Button backButton;
     private Stage stage;
     private BaseController.DataTransferMethod method;
 
@@ -72,10 +76,10 @@ public class InfoController implements Initializable {
             case REGISTRY -> transMethLabel.setText("REGISTRY");
         }
 
-        stage.setOnCloseRequest((WindowEvent event) -> {
+        backButton.setOnAction(event -> {
             try {
                 Stage newStage = new Stage();
-                newStage.initOwner(stage);
+                newStage.initModality(Modality.NONE);
 
                 FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("base.fxml"));
                 BaseController controller = new BaseController();
@@ -88,9 +92,11 @@ public class InfoController implements Initializable {
                 newStage.setScene(scene);
                 newStage.setResizable(false);
                 newStage.show();
+                stage.close();
             } catch (RuntimeException | IOException e) {
                 throw new RuntimeException(e);
             }
+
         });
     }
 }
