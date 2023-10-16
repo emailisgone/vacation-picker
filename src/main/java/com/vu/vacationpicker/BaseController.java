@@ -1,6 +1,7 @@
 package com.vu.vacationpicker;
 
 import com.vu.vacationdata.UserVacChoice;
+import com.vu.vacationpatterns.UVCSingleton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -46,7 +47,7 @@ public class BaseController {
 
         UserVacChoice userChoice = new UserVacChoice(nameField.getText(), continentBox.getValue(), countryBox.getValue());
         // SWITCH DATA TRANSFER METHOD HERE
-        initTransfer(userChoice, DataTransferMethod.USERDATA);
+        initTransfer(userChoice, DataTransferMethod.SINGLETON);
     }
     public void setStage(Stage stage){
         this.stage = stage;
@@ -63,6 +64,7 @@ public class BaseController {
                 System.out.println("initTransfer USERDATA - OK");
                 break;
             case SINGLETON:
+                singletonTransfer(userChoice);
                 System.out.println("initTransfer SINGLETON - OK");
                 break;
             case BUILDER:
@@ -92,8 +94,25 @@ public class BaseController {
             FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("info.fxml"));
             Stage stage = new Stage();
             stage.setUserData(userChoice);
-            stage.setUserData(userChoice);
             InfoController controller = new InfoController(DataTransferMethod.USERDATA, stage);
+            fxmlLoader.setController(controller);
+            Parent root = fxmlLoader.load();
+
+            stage.setTitle("Information Window");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void singletonTransfer(UserVacChoice userChoice){
+        try {
+            UVCSingleton.setUserVacChoice(userChoice.getUserName(), userChoice.getContinent(), userChoice.getCountry());
+
+            FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("info.fxml"));
+            Stage stage = new Stage();
+            InfoController controller = new InfoController(DataTransferMethod.SINGLETON, stage);
             fxmlLoader.setController(controller);
             Parent root = fxmlLoader.load();
 

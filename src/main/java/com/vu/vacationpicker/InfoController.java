@@ -1,6 +1,7 @@
 package com.vu.vacationpicker;
 
 import com.vu.vacationdata.UserVacChoice;
+import com.vu.vacationpatterns.UVCSingleton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -22,14 +23,22 @@ public class InfoController {
     private BaseController.DataTransferMethod method;
 
     public InfoController(BaseController.DataTransferMethod method, Stage stage){
+        UserVacChoice temp = null;
         this.stage = stage;
-        this.method = BaseController.DataTransferMethod.USERDATA;
-        if (method == BaseController.DataTransferMethod.USERDATA){
-            this.userData = (UserVacChoice) stage.getUserData();
+        switch (method){
+            case USERDATA -> {
+                temp = (UserVacChoice) stage.getUserData();
+                this.method = method;
+            }
+            case SINGLETON -> {
+                temp = new UserVacChoice(UVCSingleton.getInstance().getUserName(),
+                        UVCSingleton.getInstance().getContinent(),
+                        UVCSingleton.getInstance().getCountry());
+                this.method = method;
+            }
         }
-        else{
-            this.userData = null;
-        }
+        if(temp == null) temp = new UserVacChoice();
+        this.userData = temp;
     }
     public InfoController(UserVacChoice userData){
         this.userData = userData;
@@ -42,7 +51,8 @@ public class InfoController {
         switch (method){
             case CONTROLLER -> transMethLabel.setText("CONTROLLER");
             case USERDATA -> transMethLabel.setText("USERDATA");
+            case SINGLETON -> transMethLabel.setText("SINGLETON");
+            case BUILDER -> transMethLabel.setText("BUILDER");
         }
-
     }
 }
