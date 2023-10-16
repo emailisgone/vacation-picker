@@ -1,6 +1,7 @@
 package com.vu.vacationpicker;
 
 import com.vu.vacationdata.UserVacChoice;
+import com.vu.vacationpatterns.UVCRegistry;
 import com.vu.vacationpatterns.UVCSingleton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -28,17 +29,22 @@ public class InfoController {
         switch (method){
             case USERDATA -> {
                 temp = (UserVacChoice) stage.getUserData();
-                this.method = method;
+
             }
             case SINGLETON -> {
                 temp = new UserVacChoice(UVCSingleton.getInstance().getUserName(),
                         UVCSingleton.getInstance().getContinent(),
                         UVCSingleton.getInstance().getCountry());
-                this.method = method;
+                //this.method = method;
+            }
+            case REGISTRY -> {
+                temp = UVCRegistry.getUVC("firstInstance");
+                //this.method = method;
             }
         }
         if(temp == null) temp = new UserVacChoice();
         this.userData = temp;
+        this.method = method;
     }
     public InfoController(UserVacChoice userData){
         this.userData = userData;
@@ -52,7 +58,7 @@ public class InfoController {
             case CONTROLLER -> transMethLabel.setText("CONTROLLER");
             case USERDATA -> transMethLabel.setText("USERDATA");
             case SINGLETON -> transMethLabel.setText("SINGLETON");
-            case BUILDER -> transMethLabel.setText("BUILDER");
+            case REGISTRY -> transMethLabel.setText("REGISTRY");
         }
     }
 }

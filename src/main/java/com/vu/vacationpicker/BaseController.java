@@ -1,6 +1,7 @@
 package com.vu.vacationpicker;
 
 import com.vu.vacationdata.UserVacChoice;
+import com.vu.vacationpatterns.UVCRegistry;
 import com.vu.vacationpatterns.UVCSingleton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,7 +25,7 @@ public class BaseController {
         USERDATA,
         CONTROLLER,
         SINGLETON,
-        BUILDER
+        REGISTRY
     }
     @FXML
     private ChoiceBox<String> continentBox;
@@ -46,8 +46,14 @@ public class BaseController {
         }
 
         UserVacChoice userChoice = new UserVacChoice(nameField.getText(), continentBox.getValue(), countryBox.getValue());
-        // SWITCH DATA TRANSFER METHOD HERE
-        initTransfer(userChoice, DataTransferMethod.SINGLETON);
+        /*
+        * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        *
+        *                   CHANGE DATA TRANSFER METHOD HERE
+        *
+        * VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+        * */
+        initTransfer(userChoice, DataTransferMethod.REGISTRY);
     }
     public void setStage(Stage stage){
         this.stage = stage;
@@ -67,8 +73,9 @@ public class BaseController {
                 singletonTransfer(userChoice);
                 System.out.println("initTransfer SINGLETON - OK");
                 break;
-            case BUILDER:
-                System.out.println("initTransfer BUILDER - OK");
+            case REGISTRY:
+                registryTransfer(userChoice);
+                System.out.println("initTransfer REGISTRY - OK");
                 break;
         }
     }
@@ -113,6 +120,24 @@ public class BaseController {
             FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("info.fxml"));
             Stage stage = new Stage();
             InfoController controller = new InfoController(DataTransferMethod.SINGLETON, stage);
+            fxmlLoader.setController(controller);
+            Parent root = fxmlLoader.load();
+
+            stage.setTitle("Information Window");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void registryTransfer(UserVacChoice userChoice){
+        try {
+            UVCRegistry.addUVC("firstInstance", userChoice);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("info.fxml"));
+            Stage stage = new Stage();
+            InfoController controller = new InfoController(DataTransferMethod.REGISTRY, stage);
             fxmlLoader.setController(controller);
             Parent root = fxmlLoader.load();
 
