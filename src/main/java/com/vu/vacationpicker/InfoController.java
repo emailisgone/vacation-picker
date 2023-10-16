@@ -59,10 +59,6 @@ public class InfoController implements Initializable {
         this.userData = userData;
         this.method = BaseController.DataTransferMethod.CONTROLLER;
     }
-    /*public void initialize(){
-
-
-    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
