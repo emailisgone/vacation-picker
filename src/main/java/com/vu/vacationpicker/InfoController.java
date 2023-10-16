@@ -4,11 +4,20 @@ import com.vu.vacationdata.UserVacChoice;
 import com.vu.vacationpatterns.UVCRegistry;
 import com.vu.vacationpatterns.UVCSingleton;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-public class InfoController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class InfoController implements Initializable {
     private final UserVacChoice userData;
     @FXML
     private Label nameLabel;
@@ -50,7 +59,13 @@ public class InfoController {
         this.userData = userData;
         this.method = BaseController.DataTransferMethod.CONTROLLER;
     }
-    public void initialize(){
+    /*public void initialize(){
+
+
+    }*/
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         nameLabel.setText(userData.getUserName());
         continentLabel.setText(userData.getContinent());
         countryLabel.setText(userData.getCountry());
@@ -60,5 +75,26 @@ public class InfoController {
             case SINGLETON -> transMethLabel.setText("SINGLETON");
             case REGISTRY -> transMethLabel.setText("REGISTRY");
         }
+
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            try {
+                Stage newStage = new Stage();
+                newStage.initOwner(stage);
+
+                FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("base.fxml"));
+                BaseController controller = new BaseController();
+                controller.setStage(newStage);
+                fxmlLoader.setController(controller);
+                Parent root = fxmlLoader.load();
+
+                Scene scene = new Scene(root);
+                newStage.setTitle("Hello!");
+                newStage.setScene(scene);
+                newStage.setResizable(false);
+                newStage.show();
+            } catch (RuntimeException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

@@ -54,6 +54,7 @@ public class BaseController {
         * VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
         * */
         initTransfer(userChoice, DataTransferMethod.REGISTRY);
+        stage.close();
     }
     public void setStage(Stage stage){
         this.stage = stage;
