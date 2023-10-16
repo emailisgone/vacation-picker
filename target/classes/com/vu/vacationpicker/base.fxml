@@ -8,16 +8,18 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="336.0" prefWidth="437.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <children>
-        <Button fx:id="dataTransfButton" layoutX="183.0" layoutY="276.0" mnemonicParsing="false" text="Let's Travel" onAction="#sendData"/>
-        <TextField fx:id="nameField" layoutX="144.0" layoutY="154.0" promptText="Name" />
-        <ChoiceBox fx:id="countryBox" disable="true" layoutX="143.0" layoutY="235.0" prefWidth="150.0" />
-        <ChoiceBox fx:id="continentBox" layoutX="143.0" layoutY="195.0" prefWidth="150.0" />
-        <Label fx:id="gratzLabel" layoutX="53.0" layoutY="14.0" text="Congratulations!&#10;You have won a free vacation!" textAlignment="CENTER">
-            <font>
-                <Font size="25.0" />
-            </font>
-        </Label>
-        <Label fx:id="instructionLabel" layoutX="76.0" layoutY="95.0" text="Please select a continent and a country of your liking. &#10;Otherwise, choose &quot;Surprise me&quot; for a surprise choice." textAlignment="CENTER" />
-    </children>
+    <Button fx:id="dataTransfButton" layoutX="183.0" layoutY="276.0" mnemonicParsing="false" text="Let's Travel"
+            onAction="#sendData"/>
+    <TextField fx:id="nameField" layoutX="144.0" layoutY="154.0" promptText="Name"/>
+    <ChoiceBox fx:id="countryBox" disable="true" layoutX="143.0" layoutY="235.0" prefWidth="150.0"/>
+    <ChoiceBox fx:id="continentBox" layoutX="143.0" layoutY="195.0" prefWidth="150.0"/>
+    <Label fx:id="gratzLabel" layoutX="53.0" layoutY="14.0" text="Congratulations!&#10;You have won a free vacation!"
+           textAlignment="CENTER">
+        <font>
+            <Font size="25.0"/>
+        </font>
+    </Label>
+    <Label fx:id="instructionLabel" layoutX="76.0" layoutY="95.0"
+           text="Please select a continent and a country of your liking. &#10;Otherwise, choose &quot;Surprise me&quot; for a surprise choice."
+           textAlignment="CENTER"/>
 </AnchorPane>
