@@ -154,28 +154,22 @@ public class BaseController {
     private ObservableList<String> initCountries(String continent){
         ObservableList<String> countryList = switch (continent) {
             case "Africa" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Algeria", "Canary IslandsSpain", "Ceuta", "Egypt", "Libya", "Madeira", "Melilla", "Morocco", "Sudan", "Tunisia", "Western Sahara", "Burundi", "Comoros", "Djibouti", "Eritrea", "Ethiopia", "French Southern and Antarctic Lands", "Kenya", "Madagascar", "Malawi", "Mauritius", "Mayotte", "Mozambique", "Reunion", "Rwanda", "Seychelles", "Somalia", "Somaliland", "South Sudan", "Tanzania", "Uganda", "Zambia", "Zimbabwe", "Angola", "Cameroon", "Central African Republic", "Chad", "Democratic Republic of the Congo", "Republic of the Congo", "Equatorial Guinea", "Gabon", "São Tomé and Príncipe", "Botswana", "Eswatini", "Lesotho", "Namibia", "South Africa", "Benin", "Burkina Faso", "Cape Verde", "Ivory Coast", "Gambia, The", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", "Mali", "Mauritania", "Niger", "Nigeria", "Senegal", "Sierra Leone", "Togo"
+                    "Algeria", "Canary IslandsSpain", "Ceuta", "Egypt", "Libya", "Madeira", "Melilla", "Morocco", "Sudan", "Tunisia", "Western Sahara", "Burundi", "Comoros", "Djibouti", "Eritrea", "Ethiopia", "French Southern and Antarctic Lands", "Kenya", "Madagascar", "Malawi", "Mauritius", "Mayotte", "Mozambique", "Reunion", "Rwanda", "Seychelles", "Somalia", "Somaliland", "South Sudan", "Tanzania", "Uganda", "Zambia", "Zimbabwe", "Angola", "Cameroon", "Central African Republic", "Chad", "Democratic Republic of the Congo", "Republic of the Congo", "Equatorial Guinea", "Gabon", "São Tomé and Príncipe", "Botswana", "Eswatini", "Lesotho", "Namibia", "South Africa", "Benin", "Burkina Faso", "Cape Verde", "Ivory Coast", "Gambia, The", "Ghana", "Guinea", "Guinea-Bissau", "Liberia", "Mali", "Mauritania", "Niger", "Nigeria", "Senegal", "Sierra Leone", "Togo"
             );
             case "Asia" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Afghanistan", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia", "China", "Cyprus", "Georgia", "India", "Indonesia", "Iran", "Iraq", "Israel", "Japan", "Jordan", "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Malaysia", "Maldives", "Mongolia", "Myanmar", "Nepal", "North Korea", "Oman", "Pakistan", "Philippines", "Qatar", "Saudi Arabia", "Singapore", "South Korea", "Sri Lanka", "State of Palestine", "Syria", "Taiwan", "Tajikistan", "Thailand", "Timor-Leste", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan", "Vietnam", "Yemen"
+                    "Afghanistan", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia", "China", "Cyprus", "Georgia", "India", "Indonesia", "Iran", "Iraq", "Israel", "Japan", "Jordan", "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Malaysia", "Maldives", "Mongolia", "Myanmar", "Nepal", "North Korea", "Oman", "Pakistan", "Philippines", "Qatar", "Saudi Arabia", "Singapore", "South Korea", "Sri Lanka", "State of Palestine", "Syria", "Taiwan", "Tajikistan", "Thailand", "Timor-Leste", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan", "Vietnam", "Yemen"
             );
             case "Europe" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kazakhstan", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom", "Vatican City"
+                    "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kazakhstan", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom", "Vatican City"
             );
             case "North America" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Antigua and Barbuda", "Bahamas", "Barbados", "Belize", "Canada", "Costa Rica", "Cuba", "Dominica", "Dominican Republic", "El Salvador", "Grenada", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico", "Nicaragua", "Panama", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Trinidad and Tobago", "United States"
+                    "Antigua and Barbuda", "Bahamas", "Barbados", "Belize", "Canada", "Costa Rica", "Cuba", "Dominica", "Dominican Republic", "El Salvador", "Grenada", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico", "Nicaragua", "Panama", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Trinidad and Tobago", "United States"
             );
             case "South America" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"
-            );
-            case "Antarctica" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Adélie Land (France)", "Argentine Antarctica (Argentina)", "Australian Antarctic Territory (Australia)", "British Antarctic Territory (United Kingdom)", "Chilean Antarctic Territory (Chile)", "Peter I Island and Queen Maud Land (Norway)", "Ross Dependency (New Zealand)"
+                    "Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"
             );
             case "Australia" -> FXCollections.observableArrayList(
-                    "Surprise Me", "Australia", "Fiji", "Kiribati", "Marshall Islands", "Micronesia", "Nauru", "New Zealand", "Palau", "Papua New Guinea", "Samoa", "Solomon Islands", "Tonga", "Tuvalu", "Vanuatu"
-            );
-            case "Surprise Me" -> FXCollections.observableArrayList(
-                    "Surprise Me"
+                    "Australia", "Fiji", "Kiribati", "Marshall Islands", "Micronesia", "Nauru", "New Zealand", "Palau", "Papua New Guinea", "Samoa", "Solomon Islands", "Tonga", "Tuvalu", "Vanuatu"
             );
             default -> null;
         };
@@ -193,7 +187,7 @@ public class BaseController {
 
     public void initialize(){
         ObservableList<String> continents = FXCollections.observableArrayList(
-                "Africa", "Asia", "Europe", "North America", "South America", "Antarctica", "Australia", "Surprise Me"
+                "Africa", "Asia", "Europe", "North America", "South America", "Australia"
         );
         continentBox.setItems(continents);
 

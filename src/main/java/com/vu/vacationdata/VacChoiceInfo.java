@@ -1,15 +1,19 @@
 package com.vu.vacationdata;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class VacChoiceInfo extends UserVacChoice {
     private String capital;
@@ -88,15 +92,19 @@ public class VacChoiceInfo extends UserVacChoice {
                 currency.append(currencyCode).append(" [").append(currencySymbol).append("]\n");
             }
             setCurrencies(currency.toString());
-
-            System.out.println(getCapital() + "\n" +
-                    getFlagUrl() + "\n" +
-                    getCurrencies() + "\n" +
-                    getFlagDescription() + "\n");
         }
         catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public String getFormattedDate(String unformattedDate) {
+        String[] parts = unformattedDate.split(" ");
+
+        String year = parts[parts.length - 1];
+        String month = parts[1];
+        String day = parts[2];
+
+        return year + " " + month + " " + day;
     }
 }
 

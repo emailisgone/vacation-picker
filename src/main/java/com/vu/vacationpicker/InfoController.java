@@ -20,6 +20,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class InfoController implements Initializable {
@@ -38,6 +39,12 @@ public class InfoController implements Initializable {
     private Button backButton;
     @FXML
     private TextArea flagDesc;
+    @FXML
+    private Label vacDurationLabel;
+    @FXML
+    private Label currenciesLabel;
+    @FXML
+    private Label capitalLabel;
     private Stage stage;
     private BaseController.DataTransferMethod method;
 
@@ -69,9 +76,9 @@ public class InfoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameLabel.setText(userData.getUserName());
-        continentLabel.setText(userData.getContinent());
-        countryLabel.setText(userData.getCountry());
+        nameLabel.setText("Welcome, " + userData.getUserName() + "!");
+        continentLabel.setText("We hope you'll travel to "+userData.getContinent()+" again.");
+        countryLabel.setText("Please enjoy your stay at "+userData.getCountry()+".");
         switch (method){
             case CONTROLLER -> transMethLabel.setText("CONTROLLER");
             case USERDATA -> transMethLabel.setText("USERDATA");
@@ -81,6 +88,16 @@ public class InfoController implements Initializable {
 
         VacChoiceInfo info = new VacChoiceInfo();
         info.generateInfoData(userData);
+        info.generateVacationPeriod();
+        vacDurationLabel.setText("Your vacation duration is as follows: " +
+                info.getFormattedDate(info.getVacationStart().toString()) +
+                " - " +
+                info.getFormattedDate(info.getVacationEnd().toString()) + ".");
+        capitalLabel.setText("The capital is "+info.getCapital()+".");
+        currenciesLabel.setText("List of local currencies:\n" +
+                info.getCurrencies());
+
+
         flagImage.setImage(new Image(info.getFlagUrl()));
         flagDesc.setText(info.getFlagDescription());
 
