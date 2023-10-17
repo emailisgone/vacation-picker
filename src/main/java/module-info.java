@@ -4,7 +4,6 @@ module com.vu.vacationpicker {
     requires com.fasterxml.jackson.databind;
     requires java.desktop;
     requires java.logging;
-    requires barbecue;
 
 
     opens com.vu.vacationpicker to javafx.fxml;

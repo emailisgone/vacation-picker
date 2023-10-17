@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="740.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="flagImage" fitHeight="172.0" fitWidth="245.0" layoutX="466.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <TextArea fx:id="flagDesc" editable="false" layoutX="466.0" layoutY="208.0" prefHeight="172.0" prefWidth="245.0" wrapText="true" />
