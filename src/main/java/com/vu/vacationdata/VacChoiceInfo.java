@@ -1,17 +1,103 @@
 package com.vu.vacationdata;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class VacChoiceInfo extends UserVacChoice {
     private String capital;
+    private String flagDescription;
+    private String flagUrl;
+    private Image flag;
+    private String currencies;
+    public VacChoiceInfo(){
+        this.capital = null;
+        this.flagDescription = null;
+        this.flagUrl = null;
+        this.currencies = null;
+    }
 
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public String getFlagDescription() {
+        return flagDescription;
+    }
+
+    public void setFlagDescription(String flagDescription) {
+        this.flagDescription = flagDescription;
+    }
+
+    public String getFlagUrl() {
+        return flagUrl;
+    }
+
+    public void setFlagUrl(String flagUrl) {
+        this.flagUrl = flagUrl;
+    }
+
+    public String getCurrencies() {
+        return currencies;
+    }
+
+    public void setCurrencies(String currencies) {
+        this.currencies = currencies;
+    }
+
+    public void setFlag(Image flag) {
+        this.flag = flag;
+    }
+
+    public Image getFlag() {
+        return flag;
+    }
+
+    public void generateInfoData(UserVacChoice userData){
+        try {
+            URL url = new URL("https://restcountries.com/v3.1/name/" + userData.getCountry());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("accept", "application/json");
+            InputStream responseStream = connection.getInputStream();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(responseStream);
+
+            setCapital(root.get(0).path("capital").get(0).asText());
+
+            setFlagDescription(root.get(0).path("flags").path("alt").asText());
+
+            setFlagUrl(root.get(0).path("flags").path("png").asText());
+
+            StringBuilder currency = new StringBuilder();
+            JsonNode currenciesNode = root.get(0).path("currencies");
+            for (JsonNode currencyNode : currenciesNode) {
+                String currencyCode = currencyNode.get("name").asText();
+                String currencySymbol = currencyNode.get("symbol").asText();
+
+                currency.append(currencyCode).append(" [").append(currencySymbol).append("]\n");
+            }
+            setCurrencies(currency.toString());
+
+            System.out.println(getCapital() + "\n" +
+                    getFlagUrl() + "\n" +
+                    getCurrencies() + "\n" +
+                    getFlagDescription() + "\n");
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

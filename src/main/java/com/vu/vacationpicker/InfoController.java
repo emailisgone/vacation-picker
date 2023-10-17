@@ -1,6 +1,7 @@
 package com.vu.vacationpicker;
 
 import com.vu.vacationdata.UserVacChoice;
+import com.vu.vacationdata.VacChoiceInfo;
 import com.vu.vacationpatterns.UVCRegistry;
 import com.vu.vacationpatterns.UVCSingleton;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -33,6 +36,8 @@ public class InfoController implements Initializable {
     private ImageView flagImage;
     @FXML
     private Button backButton;
+    @FXML
+    private TextArea flagDesc;
     private Stage stage;
     private BaseController.DataTransferMethod method;
 
@@ -48,11 +53,9 @@ public class InfoController implements Initializable {
                 temp = new UserVacChoice(UVCSingleton.getInstance().getUserName(),
                         UVCSingleton.getInstance().getContinent(),
                         UVCSingleton.getInstance().getCountry());
-                //this.method = method;
             }
             case REGISTRY -> {
                 temp = UVCRegistry.getUVC("firstInstance");
-                //this.method = method;
             }
         }
         if(temp == null) temp = new UserVacChoice();
@@ -76,6 +79,12 @@ public class InfoController implements Initializable {
             case REGISTRY -> transMethLabel.setText("REGISTRY");
         }
 
+        VacChoiceInfo info = new VacChoiceInfo();
+        info.generateInfoData(userData);
+        flagImage.setImage(new Image(info.getFlagUrl()));
+        flagDesc.setText(info.getFlagDescription());
+
+
         backButton.setOnAction(event -> {
             try {
                 Stage newStage = new Stage();
@@ -96,7 +105,6 @@ public class InfoController implements Initializable {
             } catch (RuntimeException | IOException e) {
                 throw new RuntimeException(e);
             }
-
         });
     }
 }
