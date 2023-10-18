@@ -109,6 +109,7 @@ public class InfoController implements Initializable {
 
                 FXMLLoader fxmlLoader = new FXMLLoader(BaseApplication.class.getResource("base.fxml"));
                 BaseController controller = new BaseController();
+                stage.setUserData(userData);
                 controller.setStage(newStage);
                 fxmlLoader.setController(controller);
                 Parent root = fxmlLoader.load();

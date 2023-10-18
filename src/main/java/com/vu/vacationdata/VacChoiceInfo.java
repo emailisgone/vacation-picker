@@ -71,6 +71,7 @@ public class VacChoiceInfo extends UserVacChoice {
     public void generateInfoData(UserVacChoice userData){
         try {
             URL url = new URL("https://restcountries.com/v3.1/name/" + userData.getCountry());
+            //URL url = new URL("https://restcountries.com/v3.1/name/" + userData.getCountry() + "?fullText=true");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("accept", "application/json");
             InputStream responseStream = connection.getInputStream();

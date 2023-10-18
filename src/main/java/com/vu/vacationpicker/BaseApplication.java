@@ -1,3 +1,7 @@
+/**
+ * @author
+ * Nikita Gainulin 2 grupe nikita.gainulin@mif.stud.vu.lt
+ */
 package com.vu.vacationpicker;
 
 import javafx.application.Application;

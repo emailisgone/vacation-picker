@@ -53,7 +53,7 @@ public class BaseController {
         *
         * VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
         * */
-        initTransfer(userChoice, DataTransferMethod.REGISTRY);
+        initTransfer(userChoice, DataTransferMethod.CONTROLLER);
         stage.close();
     }
     public void setStage(Stage stage){
@@ -185,11 +185,19 @@ public class BaseController {
         alert.showAndWait();
     }
 
+    @FXML
     public void initialize(){
         ObservableList<String> continents = FXCollections.observableArrayList(
                 "Africa", "Asia", "Europe", "North America", "South America", "Australia"
         );
         continentBox.setItems(continents);
+
+        if(stage.getUserData() != null){
+            UserVacChoice preset = (UserVacChoice)stage.getUserData();
+            nameField.setText(preset.getUserName());
+            continentBox.setValue(preset.getContinent());
+            countryBox.setValue(preset.getCountry());
+        }
 
         continentBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
